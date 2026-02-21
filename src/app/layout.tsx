@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     siteName: "eclyraX",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "https://eclyrax.vercel.app/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "eclyraX - Financial Infrastructure",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "eclyraX - Financial Infrastructure",
     description:
       "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
-    images: ["/og-image.jpg"],
+    images: ["https://eclyrax.vercel.app/og-image.jpg"],
   },
 };
 
