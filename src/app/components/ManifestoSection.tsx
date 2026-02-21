@@ -1,27 +1,27 @@
-"use client";
+'use client';
 
-import { useEffect, useRef, memo } from "react";
+import { useEffect, useRef, memo } from 'react';
 
 const manifestoLines = [
   {
-    main: "We engineer the financial control layer between application and execution.",
-    subtext: "Financial state is not a byproduct — it is enforced."
+    main: 'We engineer the financial control layer between application and execution.',
+    subtext: 'Financial state is not a byproduct — it is enforced.',
   },
   {
-    main: "Transaction flow is not a request. It is a governed lifecycle.",
-    subtext: "No skipped states. No undefined transitions."
+    main: 'Transaction flow is not a request. It is a governed lifecycle.',
+    subtext: 'No skipped states. No undefined transitions.',
   },
   {
-    main: "Compliance is not an afterthought — it precedes financial commitment.",
-    subtext: "Funds do not lock without validation."
+    main: 'Compliance is not an afterthought — it precedes financial commitment.',
+    subtext: 'Funds do not lock without validation.',
   },
   {
-    main: "Ledger history is not editable. It is append-only.",
-    subtext: "Every movement leaves an immutable trace."
+    main: 'Ledger history is not editable. It is append-only.',
+    subtext: 'Every movement leaves an immutable trace.',
   },
   {
-    main: "Financial control is not a feature — it is infrastructure.",
-    subtext: "Deterministic. Auditable. Enforced by design."
+    main: 'Financial control is not a feature — it is infrastructure.',
+    subtext: 'Deterministic. Auditable. Enforced by design.',
   },
 ];
 
@@ -40,8 +40,8 @@ function ManifestoSection() {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el) => {
-              el.classList.add("active");
+            entry.target.querySelectorAll('.reveal').forEach((el) => {
+              el.classList.add('active');
             });
           }
         });
@@ -63,9 +63,9 @@ function ManifestoSection() {
       });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
       observerRef?.current?.disconnect();
     };
   }, []);
@@ -76,16 +76,18 @@ function ManifestoSection() {
       ref={sectionRef}
       className="relative z-10 border-b"
       style={{
-        borderColor: "var(--color-border)",
-        background: "var(--color-surface-1)",
-        paddingTop: "clamp(80px, 12vw, 180px)",
-        paddingBottom: "clamp(80px, 12vw, 180px)",
+        borderColor: 'var(--color-border)',
+        background: 'var(--color-surface-1)',
+        paddingTop: 'clamp(80px, 12vw, 180px)',
+        paddingBottom: 'clamp(80px, 12vw, 180px)',
       }}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Section label */}
         <div className="mb-12 reveal">
-          <span className="section-label" style={{ fontWeight: 500, letterSpacing: "0.1em" }}>04 / MANIFESTO</span>
+          <span className="section-label" style={{ fontWeight: 500, letterSpacing: '0.1em' }}>
+            04 / MANIFESTO
+          </span>
         </div>
 
         {/* Scrub headline */}
@@ -93,9 +95,15 @@ function ManifestoSection() {
           <h2
             ref={textRef}
             className="scroll-scrub-text leading-tight tracking-tight reveal"
-            style={{ fontSize: "clamp(28px, 4.5vw, 64px)", fontWeight: 600, letterSpacing: "-0.01em", lineHeight: "1.15" }}
+            style={{
+              fontSize: 'clamp(28px, 4.5vw, 64px)',
+              fontWeight: 600,
+              letterSpacing: '-0.01em',
+              lineHeight: '1.15',
+            }}
           >
-            We engineer the financial control layer between application and financial rails. Integrity is not monitored after failure — it is enforced before execution.
+            We engineer the financial control layer between application and financial rails.
+            Integrity is not monitored after failure — it is enforced before execution.
           </h2>
         </div>
 
@@ -107,26 +115,43 @@ function ManifestoSection() {
               <div
                 key={`manifesto-line-${idx}`}
                 className={`reveal reveal-delay-${(idx % 4) + 1} flex items-start gap-6 py-6 border-b`}
-                style={{ borderColor: "var(--color-border)" }}
+                style={{ borderColor: 'var(--color-border)' }}
               >
                 <span
                   className="text-[10px] pt-1 shrink-0 w-8"
-                  style={{ color: "rgba(200,169,110,0.35)", fontWeight: 500, letterSpacing: "0.1em" }}
+                  style={{
+                    color: 'rgba(200,169,110,0.35)',
+                    fontWeight: 500,
+                    letterSpacing: '0.1em',
+                  }}
                 >
-                  {String(idx + 1)?.padStart(2, "0")}
+                  {String(idx + 1)?.padStart(2, '0')}
                 </span>
                 <div className="flex-1">
                   <p
                     className="text-lg md:text-xl leading-relaxed mb-2"
-                    style={{ color: "var(--color-foreground)", fontWeight: 400, lineHeight: "1.6", opacity: 0.85 }}
+                    style={{
+                      color: 'var(--color-foreground)',
+                      fontWeight: 400,
+                      lineHeight: '1.6',
+                      opacity: 0.85,
+                    }}
                   >
                     {line?.main}
                   </p>
                   <p
                     className="text-base leading-relaxed"
-                    style={{ color: "var(--color-muted-foreground)", fontWeight: 400, lineHeight: "1.5", opacity: 0.65 }}
+                    style={{
+                      color: 'var(--color-muted-foreground)',
+                      fontWeight: 400,
+                      lineHeight: '1.5',
+                      opacity: 0.65,
+                    }}
                   >
-                    <span style={{ fontWeight: 500, letterSpacing: '0.005em' }}>eclyra</span><span style={{ fontWeight: 600, color: "#4A90E2" }}>X</span> is designed on the premise that financial correctness must be enforced at the system layer — not observed after failure.
+                    <span style={{ fontWeight: 500, letterSpacing: '0.005em' }}>eclyra</span>
+                    <span style={{ fontWeight: 600, color: '#4A90E2' }}>X</span> is designed on the
+                    premise that financial correctness must be enforced at the system layer — not
+                    observed after failure.
                   </p>
                 </div>
               </div>

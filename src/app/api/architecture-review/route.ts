@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
@@ -7,22 +7,19 @@ export async function POST(request: NextRequest) {
 
     // Validate required fields
     if (!name || !email || !company || !message) {
-      return NextResponse.json(
-        { error: "All fields are required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'All fields are required' }, { status: 400 });
     }
 
     // In production, integrate with email service (SendGrid, AWS SES, etc.)
     // For now, log the submission
-    console.log("Architecture Review Submission:", {
+    console.log('Architecture Review Submission:', {
       submissionType,
       destination,
       name,
       email,
       company,
       message,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
 
     // Simulate email sending
@@ -33,14 +30,11 @@ export async function POST(request: NextRequest) {
     // });
 
     return NextResponse.json(
-      { success: true, message: "Request submitted successfully" },
+      { success: true, message: 'Request submitted successfully' },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Architecture Review submission error:", error);
-    return NextResponse.json(
-      { error: "Internal server error" },
-      { status: 500 }
-    );
+    console.error('Architecture Review submission error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

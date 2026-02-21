@@ -4,14 +4,19 @@ import { createClient } from '../../../lib/supabase/server';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { fullName, contactNumber, companyName, companyWebsite, email, sector, projectDescription } = body;
+    const {
+      fullName,
+      contactNumber,
+      companyName,
+      companyWebsite,
+      email,
+      sector,
+      projectDescription,
+    } = body;
 
     // Validate required fields
     if (!fullName || !contactNumber || !companyName || !email || !sector || !projectDescription) {
-      return NextResponse.json(
-        { error: 'All required fields must be provided' },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: 'All required fields must be provided' }, { status: 400 });
     }
 
     // Create Supabase client
@@ -27,7 +32,7 @@ export async function POST(request: NextRequest) {
         company_website: companyWebsite || null,
         email: email,
         sector: sector,
-        project_description: projectDescription
+        project_description: projectDescription,
       })
       .select()
       .single();
@@ -47,7 +52,7 @@ export async function POST(request: NextRequest) {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
         },
         body: JSON.stringify({
           fullName,
@@ -57,8 +62,8 @@ export async function POST(request: NextRequest) {
           companyWebsite: companyWebsite || 'Not provided',
           sector,
           projectDescription,
-          timestamp: data.created_at || new Date().toISOString()
-        })
+          timestamp: data.created_at || new Date().toISOString(),
+        }),
       });
 
       if (!emailResponse.ok) {
@@ -71,10 +76,10 @@ export async function POST(request: NextRequest) {
     }
 
     return NextResponse.json(
-      { 
-        success: true, 
+      {
+        success: true,
         message: 'Your request has been received. Our team will respond within 48 hours.',
-        data 
+        data,
       },
       { status: 200 }
     );
