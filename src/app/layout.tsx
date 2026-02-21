@@ -28,11 +28,11 @@ export const metadata: Metadata = {
     title: "eclyraX - Financial Infrastructure",
     description:
     "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
-    url: "https://eclyrax.com",
+    url: "https://eclyrax.vercel.app",
     siteName: "eclyraX",
     images: [
     {
-      url: "https://img.rocket.new/generatedImages/rocket_gen_img_136f7b22f-1767598784543.png",
+      url: "/og-image.jpg",
       width: 1200,
       height: 630,
       alt: "eclyraX - Financial Infrastructure"
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     title: "eclyraX - Financial Infrastructure",
     description:
     "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
-    images: ["https://eclyrax.com/og.jpg"]
+    images: ["/og-image.jpg"]
   }
 };
 
