@@ -6,52 +6,52 @@
 
 :root {
   /* === CORE BACKGROUND & FOREGROUND === */
-  --color-background: #080C10;          /* custom near-black navy */
-  --color-foreground: #E8E4DC;          /* custom warm white */
+  --color-background: #080c10; /* custom near-black navy */
+  --color-foreground: #e8e4dc; /* custom warm white */
   --color-border: rgba(232, 228, 220, 0.08); /* warm white 8% */
-  --color-input: rgba(232, 228, 220, 0.06);  /* warm white 6% */
-  --color-ring: #C8A96E;                /* gold-500 equivalent */
+  --color-input: rgba(232, 228, 220, 0.06); /* warm white 6% */
+  --color-ring: #c8a96e; /* gold-500 equivalent */
 
   /* === CARD & POPOVER === */
-  --color-card: #0D1219;                /* custom dark navy card */
-  --color-card-foreground: #E8E4DC;     /* warm white */
-  --color-popover: #0D1219;             /* dark navy */
-  --color-popover-foreground: #E8E4DC;  /* warm white */
+  --color-card: #0d1219; /* custom dark navy card */
+  --color-card-foreground: #e8e4dc; /* warm white */
+  --color-popover: #0d1219; /* dark navy */
+  --color-popover-foreground: #e8e4dc; /* warm white */
 
   /* === MUTED === */
-  --color-muted: #141A22;               /* custom dark muted */
-  --color-muted-foreground: #7A8696;    /* custom slate-blue muted text */
+  --color-muted: #141a22; /* custom dark muted */
+  --color-muted-foreground: #7a8696; /* custom slate-blue muted text */
 
   /* === PRIMARY === */
-  --color-primary: #C8A96E;             /* custom warm gold */
-  --color-primary-foreground: #080C10;  /* near-black on gold */
+  --color-primary: #c8a96e; /* custom warm gold */
+  --color-primary-foreground: #080c10; /* near-black on gold */
 
   /* === SECONDARY === */
-  --color-secondary: #1E3A30;           /* custom deep emerald */
-  --color-secondary-foreground: #A8D4C0; /* light mint on emerald */
+  --color-secondary: #1e3a30; /* custom deep emerald */
+  --color-secondary-foreground: #a8d4c0; /* light mint on emerald */
 
   /* === DESTRUCTIVE === */
-  --color-destructive: #7F1D1D;         /* red-900 */
-  --color-destructive-foreground: #FEE2E2; /* red-100 */
+  --color-destructive: #7f1d1d; /* red-900 */
+  --color-destructive-foreground: #fee2e2; /* red-100 */
 
   /* === ACCENT === */
-  --color-accent: #2A4A3E;              /* custom deep emerald accent */
-  --color-accent-foreground: #C8A96E;   /* gold on emerald */
+  --color-accent: #2a4a3e; /* custom deep emerald accent */
+  --color-accent-foreground: #c8a96e; /* gold on emerald */
 
   /* === STATUS === */
-  --color-success: #166534;             /* green-800 */
-  --color-success-foreground: #DCFCE7;  /* green-100 */
-  --color-warning: #92400E;             /* amber-800 */
-  --color-warning-foreground: #FEF3C7;  /* amber-100 */
-  --color-error: #991B1B;               /* red-800 */
-  --color-error-foreground: #FEE2E2;    /* red-100 */
+  --color-success: #166534; /* green-800 */
+  --color-success-foreground: #dcfce7; /* green-100 */
+  --color-warning: #92400e; /* amber-800 */
+  --color-warning-foreground: #fef3c7; /* amber-100 */
+  --color-error: #991b1b; /* red-800 */
+  --color-error-foreground: #fee2e2; /* red-100 */
 
   /* === BRAND SURFACE TINTS === */
-  --color-surface-1: #0D1219;           /* card bg */
-  --color-surface-2: #111820;           /* slightly lighter */
-  --color-surface-3: #161E28;           /* hover state */
+  --color-surface-1: #0d1219; /* card bg */
+  --color-surface-2: #111820; /* slightly lighter */
+  --color-surface-3: #161e28; /* hover state */
   --color-gold-dim: rgba(200, 169, 110, 0.12); /* gold 12% */
-  --color-emerald-dim: rgba(42, 74, 62, 0.3);  /* emerald 30% */
+  --color-emerald-dim: rgba(42, 74, 62, 0.3); /* emerald 30% */
 }
 
 /* === FONT FAMILIES === */
@@ -72,7 +72,7 @@ html {
 /* === SELECTION === */
 ::selection {
   background: rgba(200, 169, 110, 0.25);
-  color: #E8E4DC;
+  color: #e8e4dc;
 }
 
 /* === SCROLLBAR === */
@@ -117,8 +117,9 @@ html {
 .text-reveal-content {
   transform: translateY(105%);
   opacity: 0;
-  transition: transform 1.6s cubic-bezier(0.19, 1, 0.22, 1),
-              opacity 1.6s ease;
+  transition:
+    transform 1.6s cubic-bezier(0.19, 1, 0.22, 1),
+    opacity 1.6s ease;
   will-change: transform, opacity;
 }
 
@@ -131,8 +132,9 @@ html {
 .reveal {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  transition:
+    opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
@@ -141,15 +143,25 @@ html {
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 100ms; }
-.reveal-delay-2 { transition-delay: 200ms; }
-.reveal-delay-3 { transition-delay: 300ms; }
-.reveal-delay-4 { transition-delay: 400ms; }
-.reveal-delay-5 { transition-delay: 500ms; }
+.reveal-delay-1 {
+  transition-delay: 100ms;
+}
+.reveal-delay-2 {
+  transition-delay: 200ms;
+}
+.reveal-delay-3 {
+  transition-delay: 300ms;
+}
+.reveal-delay-4 {
+  transition-delay: 400ms;
+}
+.reveal-delay-5 {
+  transition-delay: 500ms;
+}
 
 /* === SCROLL SCRUB TEXT === */
 .scroll-scrub-text {
-  background-image: linear-gradient(to right, #E8E4DC 50%, #2A3040 50%);
+  background-image: linear-gradient(to right, #e8e4dc 50%, #2a3040 50%);
   background-size: 200% 100%;
   background-position: 100% 0;
   -webkit-background-clip: text;
@@ -195,7 +207,9 @@ html {
     rgba(200, 169, 110, 0.35),
     transparent 40%
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   opacity: 0;
@@ -227,8 +241,12 @@ html {
 }
 
 @keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
 }
 
 /* === HERO CAROUSEL === */
@@ -280,8 +298,8 @@ html {
   align-items: center;
   justify-content: center;
   padding: 14px 32px;
-  background: #5A9FE5;
-  color: #FFFFFF;
+  background: #5a9fe5;
+  color: #ffffff;
   border: none;
   border-radius: 6px;
   font-family: 'Inter', sans-serif;
@@ -295,7 +313,7 @@ html {
 }
 
 .btn-primary:hover {
-  background: #4A8FD5;
+  background: #4a8fd5;
   filter: none;
 }
 
@@ -315,7 +333,9 @@ html {
 .bento-card {
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .bento-card:hover {

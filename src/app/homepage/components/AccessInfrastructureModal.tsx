@@ -1,44 +1,47 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface AccessInfrastructureModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInfrastructureModalProps) {
+export default function AccessInfrastructureModal({
+  isOpen,
+  onClose,
+}: AccessInfrastructureModalProps) {
   const [formData, setFormData] = useState({
-    fullName: "",
-    contactNumber: "",
-    companyName: "",
-    companyWebsite: "",
-    email: "",
-    sector: "",
-    projectDescription: ""
+    fullName: '',
+    contactNumber: '',
+    companyName: '',
+    companyWebsite: '',
+    email: '',
+    sector: '',
+    projectDescription: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   useEffect(() => {
     if (isOpen) {
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = 'unset';
     };
   }, [isOpen]);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) {
+      if (e.key === 'Escape' && isOpen) {
         onClose();
       }
     };
-    window.addEventListener("keydown", handleEscape);
-    return () => window.removeEventListener("keydown", handleEscape);
+    window.addEventListener('keydown', handleEscape);
+    return () => window.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
   if (!isOpen) return null;
@@ -46,125 +49,166 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      const response = await fetch("/api/architecture-review", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+      const response = await fetch('/api/architecture-review', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           ...formData,
-          submissionType: "Access Infrastructure Request",
-          destination: "access@eclyrax.com"
-        })
+          submissionType: 'Access Infrastructure Request',
+          destination: 'access@eclyrax.com',
+        }),
       });
 
       if (response.ok) {
-        setSubmitStatus("success");
+        setSubmitStatus('success');
       } else {
-        setSubmitStatus("error");
+        setSubmitStatus('error');
       }
     } catch (error) {
-      setSubmitStatus("error");
+      setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleClose = () => {
-    if (submitStatus !== "success") {
+    if (submitStatus !== 'success') {
       onClose();
     }
   };
 
   const handleReset = () => {
     setFormData({
-      fullName: "",
-      contactNumber: "",
-      companyName: "",
-      companyWebsite: "",
-      email: "",
-      sector: "",
-      projectDescription: ""
+      fullName: '',
+      contactNumber: '',
+      companyName: '',
+      companyWebsite: '',
+      email: '',
+      sector: '',
+      projectDescription: '',
     });
-    setSubmitStatus("idle");
+    setSubmitStatus('idle');
     onClose();
   };
 
   return (
     <div
       className="fixed inset-0 z-50 flex items-center justify-center p-4"
-      style={{ 
-        background: "rgba(8, 12, 16, 0.65)",
-        animation: "fadeIn 120ms ease-out"
+      style={{
+        background: 'rgba(8, 12, 16, 0.65)',
+        animation: 'fadeIn 120ms ease-out',
       }}
-      onClick={handleClose}>
+      onClick={handleClose}
+    >
       <div
         className="relative w-full border flex flex-col"
         style={{
-          background: "var(--color-surface-1)",
-          borderColor: "var(--color-border)",
-          borderRadius: "6px",
-          maxWidth: "640px",
-          width: "92%",
-          maxHeight: "85vh"
+          background: 'var(--color-surface-1)',
+          borderColor: 'var(--color-border)',
+          borderRadius: '6px',
+          maxWidth: '640px',
+          width: '92%',
+          maxHeight: '85vh',
         }}
-        onClick={(e) => e.stopPropagation()}>
-        
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Close Button - Top Right */}
         <button
           onClick={handleClose}
           className="absolute top-4 right-4 font-mono-label text-xs uppercase tracking-wide transition-opacity duration-120 z-20"
-          style={{ color: "var(--color-muted-foreground)", opacity: 0.5 }}
-          onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.8"; }}
-          onMouseLeave={(e) => { e.currentTarget.style.opacity = "0.5"; }}>
+          style={{ color: 'var(--color-muted-foreground)', opacity: 0.5 }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.opacity = '0.8';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.opacity = '0.5';
+          }}
+        >
           ✕
         </button>
 
         {/* Form or Success Message */}
-        {submitStatus === "success" ? (
+        {submitStatus === 'success' ? (
           <div className="p-12 text-center">
             <div
               className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6"
-              style={{ background: "rgba(74, 222, 128, 0.1)", border: "1px solid rgba(74, 222, 128, 0.3)" }}>
-              <span style={{ color: "#4ADE80", fontSize: "24px" }}>✓</span>
+              style={{
+                background: 'rgba(74, 222, 128, 0.1)',
+                border: '1px solid rgba(74, 222, 128, 0.3)',
+              }}
+            >
+              <span style={{ color: '#4ADE80', fontSize: '24px' }}>✓</span>
             </div>
             <h3
               className="text-xl font-light mb-3"
-              style={{ color: "var(--color-foreground)", fontWeight: 600, letterSpacing: "-0.01em", lineHeight: "1.15" }}>
+              style={{
+                color: 'var(--color-foreground)',
+                fontWeight: 600,
+                letterSpacing: '-0.01em',
+                lineHeight: '1.15',
+              }}
+            >
               Your request has been received.
             </h3>
             <p
               className="text-sm"
-              style={{ color: "var(--color-muted-foreground)", fontWeight: 400, lineHeight: "1.5", opacity: 0.65 }}>
+              style={{
+                color: 'var(--color-muted-foreground)',
+                fontWeight: 400,
+                lineHeight: '1.5',
+                opacity: 0.65,
+              }}
+            >
               Our team will respond within 48 hours.
             </p>
           </div>
         ) : (
           <>
             {/* Header - Centered - Always Visible */}
-            <div className="text-center px-8" style={{ paddingTop: "32px", paddingBottom: "24px" }}>
+            <div className="text-center px-8" style={{ paddingTop: '32px', paddingBottom: '24px' }}>
               <h2
                 className="text-xl font-light mb-3"
-                style={{ color: "var(--color-foreground)", fontWeight: 600, letterSpacing: "-0.01em", lineHeight: "1.15" }}>
+                style={{
+                  color: 'var(--color-foreground)',
+                  fontWeight: 600,
+                  letterSpacing: '-0.01em',
+                  lineHeight: '1.15',
+                }}
+              >
                 Access Infrastructure
               </h2>
               <p
                 className="text-xs leading-relaxed"
-                style={{ color: "var(--color-muted-foreground)", fontWeight: 400, lineHeight: "1.5", opacity: 0.65 }}>
-                Provide your institutional details below.<br />
+                style={{
+                  color: 'var(--color-muted-foreground)',
+                  fontWeight: 400,
+                  lineHeight: '1.5',
+                  opacity: 0.65,
+                }}
+              >
+                Provide your institutional details below.
+                <br />
                 All submissions are reviewed manually.
               </p>
             </div>
 
             {/* Scrollable Form Container */}
-            <div className="overflow-y-auto px-8" style={{ paddingBottom: "32px" }}>
+            <div className="overflow-y-auto px-8" style={{ paddingBottom: '32px' }}>
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Row 1: Full Name, Contact Number */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                   <div>
                     <label
                       className="block text-xs uppercase tracking-wide mb-2"
-                      style={{ color: "var(--color-muted-foreground)", fontWeight: 500, letterSpacing: "0.03em", opacity: 0.75 }}>
+                      style={{
+                        color: 'var(--color-muted-foreground)',
+                        fontWeight: 500,
+                        letterSpacing: '0.03em',
+                        opacity: 0.75,
+                      }}
+                    >
                       Full Name *
                     </label>
                     <input
@@ -174,17 +218,24 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
                       className="w-full px-4 py-2.5 border text-sm"
                       style={{
-                        background: "var(--color-background)",
-                        borderColor: "var(--color-border)",
-                        color: "var(--color-foreground)",
-                        borderRadius: "6px",
-                        fontWeight: 400
-                      }} />
+                        background: 'var(--color-background)',
+                        borderColor: 'var(--color-border)',
+                        color: 'var(--color-foreground)',
+                        borderRadius: '6px',
+                        fontWeight: 400,
+                      }}
+                    />
                   </div>
                   <div>
                     <label
                       className="block text-xs uppercase tracking-wide mb-2"
-                      style={{ color: "var(--color-muted-foreground)", fontWeight: 500, letterSpacing: "0.03em", opacity: 0.75 }}>
+                      style={{
+                        color: 'var(--color-muted-foreground)',
+                        fontWeight: 500,
+                        letterSpacing: '0.03em',
+                        opacity: 0.75,
+                      }}
+                    >
                       Contact Number *
                     </label>
                     <input
@@ -194,12 +245,13 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                       onChange={(e) => setFormData({ ...formData, contactNumber: e.target.value })}
                       className="w-full px-4 py-2.5 border text-sm"
                       style={{
-                        background: "var(--color-background)",
-                        borderColor: "var(--color-border)",
-                        color: "var(--color-foreground)",
-                        borderRadius: "6px",
-                        fontWeight: 400
-                      }} />
+                        background: 'var(--color-background)',
+                        borderColor: 'var(--color-border)',
+                        color: 'var(--color-foreground)',
+                        borderRadius: '6px',
+                        fontWeight: 400,
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -208,7 +260,13 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                   <div>
                     <label
                       className="block text-xs uppercase tracking-wide mb-2"
-                      style={{ color: "var(--color-muted-foreground)", fontWeight: 500, letterSpacing: "0.03em", opacity: 0.75 }}>
+                      style={{
+                        color: 'var(--color-muted-foreground)',
+                        fontWeight: 500,
+                        letterSpacing: '0.03em',
+                        opacity: 0.75,
+                      }}
+                    >
                       Company Name *
                     </label>
                     <input
@@ -218,17 +276,24 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                       onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
                       className="w-full px-4 py-2.5 border text-sm"
                       style={{
-                        background: "var(--color-background)",
-                        borderColor: "var(--color-border)",
-                        color: "var(--color-foreground)",
-                        borderRadius: "6px",
-                        fontWeight: 400
-                      }} />
+                        background: 'var(--color-background)',
+                        borderColor: 'var(--color-border)',
+                        color: 'var(--color-foreground)',
+                        borderRadius: '6px',
+                        fontWeight: 400,
+                      }}
+                    />
                   </div>
                   <div>
                     <label
                       className="block text-xs uppercase tracking-wide mb-2"
-                      style={{ color: "var(--color-muted-foreground)", fontWeight: 500, letterSpacing: "0.03em", opacity: 0.75 }}>
+                      style={{
+                        color: 'var(--color-muted-foreground)',
+                        fontWeight: 500,
+                        letterSpacing: '0.03em',
+                        opacity: 0.75,
+                      }}
+                    >
                       Company Website *
                     </label>
                     <input
@@ -238,12 +303,13 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                       onChange={(e) => setFormData({ ...formData, companyWebsite: e.target.value })}
                       className="w-full px-4 py-2.5 border text-sm"
                       style={{
-                        background: "var(--color-background)",
-                        borderColor: "var(--color-border)",
-                        color: "var(--color-foreground)",
-                        borderRadius: "6px",
-                        fontWeight: 400
-                      }} />
+                        background: 'var(--color-background)',
+                        borderColor: 'var(--color-border)',
+                        color: 'var(--color-foreground)',
+                        borderRadius: '6px',
+                        fontWeight: 400,
+                      }}
+                    />
                   </div>
                 </div>
 
@@ -252,7 +318,13 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                   <div>
                     <label
                       className="block text-xs uppercase tracking-wide mb-2"
-                      style={{ color: "var(--color-muted-foreground)", fontWeight: 500, letterSpacing: "0.03em", opacity: 0.75 }}>
+                      style={{
+                        color: 'var(--color-muted-foreground)',
+                        fontWeight: 500,
+                        letterSpacing: '0.03em',
+                        opacity: 0.75,
+                      }}
+                    >
                       Official Email Address *
                     </label>
                     <input
@@ -262,17 +334,24 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       className="w-full px-4 py-2.5 border text-sm"
                       style={{
-                        background: "var(--color-background)",
-                        borderColor: "var(--color-border)",
-                        color: "var(--color-foreground)",
-                        borderRadius: "6px",
-                        fontWeight: 400
-                      }} />
+                        background: 'var(--color-background)',
+                        borderColor: 'var(--color-border)',
+                        color: 'var(--color-foreground)',
+                        borderRadius: '6px',
+                        fontWeight: 400,
+                      }}
+                    />
                   </div>
                   <div>
                     <label
                       className="block text-xs uppercase tracking-wide mb-2"
-                      style={{ color: "var(--color-muted-foreground)", fontWeight: 500, letterSpacing: "0.03em", opacity: 0.75 }}>
+                      style={{
+                        color: 'var(--color-muted-foreground)',
+                        fontWeight: 500,
+                        letterSpacing: '0.03em',
+                        opacity: 0.75,
+                      }}
+                    >
                       Sector / Industry *
                     </label>
                     <select
@@ -281,13 +360,16 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                       onChange={(e) => setFormData({ ...formData, sector: e.target.value })}
                       className="w-full px-4 py-2.5 border text-sm"
                       style={{
-                        background: "var(--color-background)",
-                        borderColor: "var(--color-border)",
-                        color: "var(--color-foreground)",
-                        borderRadius: "6px",
-                        fontWeight: 400
-                      }}>
-                      <option value="" disabled>Select sector</option>
+                        background: 'var(--color-background)',
+                        borderColor: 'var(--color-border)',
+                        color: 'var(--color-foreground)',
+                        borderRadius: '6px',
+                        fontWeight: 400,
+                      }}
+                    >
+                      <option value="" disabled>
+                        Select sector
+                      </option>
                       <option value="Financial Services">Financial Services</option>
                       <option value="Fintech Infrastructure">Fintech Infrastructure</option>
                       <option value="Banking">Banking</option>
@@ -304,30 +386,37 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                 <div>
                   <label
                     className="block text-xs uppercase tracking-wide mb-2"
-                    style={{ color: "var(--color-muted-foreground)", fontWeight: 500, letterSpacing: "0.03em", opacity: 0.75 }}>
+                    style={{
+                      color: 'var(--color-muted-foreground)',
+                      fontWeight: 500,
+                      letterSpacing: '0.03em',
+                      opacity: 0.75,
+                    }}
+                  >
                     Project Description / Infrastructure Context *
                   </label>
                   <textarea
                     required
                     value={formData.projectDescription}
-                    onChange={(e) => setFormData({ ...formData, projectDescription: e.target.value })}
+                    onChange={(e) =>
+                      setFormData({ ...formData, projectDescription: e.target.value })
+                    }
                     rows={4}
                     className="w-full px-4 py-2.5 border text-sm resize-y"
                     style={{
-                      background: "var(--color-background)",
-                      borderColor: "var(--color-border)",
-                      color: "var(--color-foreground)",
-                      borderRadius: "6px",
-                      minHeight: "120px",
-                      maxHeight: "180px",
-                      fontWeight: 400
-                    }} />
+                      background: 'var(--color-background)',
+                      borderColor: 'var(--color-border)',
+                      color: 'var(--color-foreground)',
+                      borderRadius: '6px',
+                      minHeight: '120px',
+                      maxHeight: '180px',
+                      fontWeight: 400,
+                    }}
+                  />
                 </div>
 
-                {submitStatus === "error" && (
-                  <p
-                    className="font-mono-label text-sm"
-                    style={{ color: "#EF4444" }}>
+                {submitStatus === 'error' && (
+                  <p className="font-mono-label text-sm" style={{ color: '#EF4444' }}>
                     Submission failed. Please try again.
                   </p>
                 )}
@@ -337,8 +426,9 @@ export default function AccessInfrastructureModal({ isOpen, onClose }: AccessInf
                   type="submit"
                   disabled={isSubmitting}
                   className="btn-primary w-full text-center mr-0 mt-[22px] rounded-br-[31px] rounded-t-[31px] rounded-bl-[31px] border-0 border-none"
-                  style={{ fontWeight: 600, letterSpacing: "0.04em" }}>
-                  {isSubmitting ? "Submitting..." : "Submit Access Request"}
+                  style={{ fontWeight: 600, letterSpacing: '0.04em' }}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Access Request'}
                 </button>
               </form>
             </div>
