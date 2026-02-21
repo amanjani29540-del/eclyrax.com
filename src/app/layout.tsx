@@ -15,29 +15,28 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "eclyraX - Financial Infrastructure",
   description:
-  "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
-  metadataBase: new URL("https://eclyrax.com"),
+    "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
   icons: {
     icon: [
-    { url: '/favicon.svg', type: 'image/svg+xml' },
-    { url: '/icon.svg', type: 'image/svg+xml' }],
-
-    apple: '/apple-icon.png'
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon.svg", type: "image/svg+xml" }
+    ],
+    apple: "/apple-icon.png"
   },
   openGraph: {
     title: "eclyraX - Financial Infrastructure",
     description:
-    "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
+      "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
     url: "https://eclyrax.vercel.app",
     siteName: "eclyraX",
     images: [
-    {
-      url: "/og-image.jpg",
-      width: 1200,
-      height: 630,
-      alt: "eclyraX - Financial Infrastructure"
-    }],
-
+      {
+        url: "https://eclyrax.vercel.app/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "eclyraX - Financial Infrastructure"
+      }
+    ],
     locale: "en_US",
     type: "website"
   },
@@ -45,8 +44,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "eclyraX - Financial Infrastructure",
     description:
-    "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
-    images: ["/og-image.jpg"]
+      "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
+    images: ["https://eclyrax.vercel.app/og-image.jpg"]
   }
 };
 
