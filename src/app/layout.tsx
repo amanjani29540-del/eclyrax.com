@@ -13,9 +13,12 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://eclyrax.vercel.app"),
+
   title: "eclyraX - Financial Infrastructure",
   description:
     "Deterministic financial control infrastructure. Institutional-grade architecture for monetary operations.",
+
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -23,6 +26,7 @@ export const metadata: Metadata = {
     ],
     apple: "/apple-icon.png"
   },
+
   openGraph: {
     title: "eclyraX - Financial Infrastructure",
     description:
@@ -40,6 +44,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website"
   },
+
   twitter: {
     card: "summary_large_image",
     title: "eclyraX - Financial Infrastructure",
